@@ -299,10 +299,59 @@ dependencies = [
 ]
 
 [[package]]
-name = "anyhow"
-version = "1.0.71"
+name = "anstream"
+version = "0.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c7d0618f0e0b7e8ff11427422b64564d5fb0be1940354bfe2e0529b18a9d9b8"
+checksum = "0ca84f3628370c59db74ee214b3263d58f9aadd9b4fe7e711fd87dc452b7f163"
+dependencies = [
+ "anstyle",
+ "anstyle-parse",
+ "anstyle-query",
+ "anstyle-wincon",
+ "colorchoice",
+ "is-terminal",
+ "utf8parse",
+]
+
+[[package]]
+name = "anstyle"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3a30da5c5f2d5e72842e00bcb57657162cdabef0931f40e2deb9b4140440cecd"
+
+[[package]]
+name = "anstyle-parse"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "938874ff5980b03a87c5524b3ae5b59cf99b1d6bc836848df7bc5ada9643c333"
+dependencies = [
+ "utf8parse",
+]
+
+[[package]]
+name = "anstyle-query"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5ca11d4be1bab0c8bc8734a9aa7bf4ee8316d462a08c6ac5052f888fef5b494b"
+dependencies = [
+ "windows-sys",
+]
+
+[[package]]
+name = "anstyle-wincon"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "180abfa45703aebe0093f79badacc01b8fd4ea2e35118747e5811127f926e188"
+dependencies = [
+ "anstyle",
+ "windows-sys",
+]
+
+[[package]]
+name = "anyhow"
+version = "1.0.72"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3b13c32d80ecc7ab747b80c3784bce54ee8a7a0cc4fbda9bf4cda2cf6fe90854"
 
 [[package]]
 name = "arbitrary"
@@ -336,7 +385,7 @@ checksum = "a564d521dd56509c4c47480d00b80ee55f7e385ae48db5744c67ad50c92d2ebf"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.25",
+ "syn 2.0.26",
 ]
 
 [[package]]
@@ -577,6 +626,47 @@ dependencies = [
 ]
 
 [[package]]
+name = "clap"
+version = "4.3.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8f644d0dac522c8b05ddc39aaaccc5b136d5dc4ff216610c5641e3be5becf56c"
+dependencies = [
+ "clap_builder",
+ "clap_derive",
+ "once_cell",
+]
+
+[[package]]
+name = "clap_builder"
+version = "4.3.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "af410122b9778e024f9e0fb35682cc09cc3f85cad5e8d3ba8f47a9702df6e73d"
+dependencies = [
+ "anstream",
+ "anstyle",
+ "clap_lex",
+ "strsim",
+]
+
+[[package]]
+name = "clap_derive"
+version = "4.3.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "54a9bb5758fc5dfe728d1019941681eccaf0cf8a4189b692a0ee2f2ecf90a050"
+dependencies = [
+ "heck 0.4.1",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.26",
+]
+
+[[package]]
+name = "clap_lex"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2da6da31387c7e4ef160ffab6d5e7f00c42626fe39aea70a7b0f1773f7dd6c1b"
+
+[[package]]
 name = "clone3"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -585,6 +675,12 @@ dependencies = [
  "bitflags 1.3.2",
  "uapi",
 ]
+
+[[package]]
+name = "colorchoice"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "acbf1af155f9b9ef647e42cdc158db4b64a1b61f743629225fde6f3e0be2a7c7"
 
 [[package]]
 name = "command-fds"
@@ -671,7 +767,7 @@ dependencies = [
  "libc",
  "log",
  "nix 0.26.2",
- "oci-spec 0.6.1",
+ "oci-spec 0.6.2",
  "proc-mounts",
  "protobuf",
  "serde",
@@ -691,9 +787,7 @@ dependencies = [
  "openssl",
  "tokio",
  "tokio-util",
- "wws-config",
- "wws-router",
- "wws-server",
+ "wasm-workers-server",
 ]
 
 [[package]]
@@ -918,6 +1012,27 @@ dependencies = [
 ]
 
 [[package]]
+name = "csv"
+version = "1.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "626ae34994d3d8d668f4269922248239db4ae42d538b14c398b74a52208e8086"
+dependencies = [
+ "csv-core",
+ "itoa",
+ "ryu",
+ "serde",
+]
+
+[[package]]
+name = "csv-core"
+version = "0.1.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2b2466559f260f48ad25fe6317b3c8dac77b5bdb5763ac7d9d6103530663bc90"
+dependencies = [
+ "memchr",
+]
+
+[[package]]
 name = "darling"
 version = "0.14.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -958,7 +1073,7 @@ version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bef552e6f588e446098f6ba40d89ac146c8c7b64aade83c051ee00bb5d2bc18d"
 dependencies = [
- "uuid 1.4.0",
+ "uuid 1.4.1",
 ]
 
 [[package]]
@@ -1067,6 +1182,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "dirs-next"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b98cf8ebf19c3d1b223e151f99a4f9f0690dca41414773390fc824184ac833e1"
+dependencies = [
+ "cfg-if 1.0.0",
+ "dirs-sys-next",
+]
+
+[[package]]
 name = "dirs-sys"
 version = "0.3.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1093,6 +1218,12 @@ name = "either"
 version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7fcaabb2fef8c910e7f4c7ce9f67a1283a1715879a7c230ca9d6d1ae31f16d91"
+
+[[package]]
+name = "encode_unicode"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "34aa73646ffb006b8f5147f3dc182bd4bcb190227ce861fc4a4844bf8e3cb2c0"
 
 [[package]]
 name = "encoding_rs"
@@ -1579,7 +1710,6 @@ checksum = "d5477fe2230a79769d8dc68e0eabf5437907c0457a5614a9e8dddb67f65eb65d"
 dependencies = [
  "equivalent",
  "hashbrown 0.14.0",
- "serde",
 ]
 
 [[package]]
@@ -1646,9 +1776,9 @@ dependencies = [
 
 [[package]]
 name = "itoa"
-version = "1.0.8"
+version = "1.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "62b02a5381cc465bd3041d84623d0fa3b66738b52b8e2fc3bab8ad63ab032f4a"
+checksum = "af150ab688ff2122fcef229be89cb50dd66af9e01a4ff320cc137eecc9bacc38"
 
 [[package]]
 name = "ittapi"
@@ -2049,9 +2179,9 @@ dependencies = [
 
 [[package]]
 name = "oci-spec"
-version = "0.6.1"
+version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf77d2eace1f4909b081d231d1ad3570ba3448ae95290ab701314faaee1b611a"
+checksum = "9421b067205c68dc80af7c68599a9c1eb113f975aafeb874cea7f4d5d41ce3fb"
 dependencies = [
  "derive_builder 0.12.0",
  "getset",
@@ -2089,7 +2219,7 @@ checksum = "a948666b637a0f465e8564c73e89d4dde00d72d4d473cc972f390fc3dcee7d9c"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.25",
+ "syn 2.0.26",
 ]
 
 [[package]]
@@ -2154,9 +2284,9 @@ dependencies = [
 
 [[package]]
 name = "paste"
-version = "1.0.13"
+version = "1.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b4b27ab7be369122c218afc2079489cdcb4b517c0a3fc386ff11e1fedfcc2b35"
+checksum = "de3145af08024dea9fa9914f381a17b8fc6034dfb00f3a84013f7ff43f29ed4c"
 
 [[package]]
 name = "percent-encoding"
@@ -2208,6 +2338,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "prettytable-rs"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eea25e07510aa6ab6547308ebe3c036016d162b8da920dbb079e3ba8acf3d95a"
+dependencies = [
+ "csv",
+ "encode_unicode",
+ "is-terminal",
+ "lazy_static",
+ "term",
+ "unicode-width",
+]
+
+[[package]]
 name = "proc-macro-error"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2233,9 +2377,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.64"
+version = "1.0.66"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "78803b62cbf1f46fde80d7c0e803111524b9877184cfe7c3033659490ac7a7da"
+checksum = "18fb31db3f9bddb2ea821cde30a9f70117e3f119938b5ee630b7403aa6e2ead9"
 dependencies = [
  "unicode-ident",
 ]
@@ -2296,9 +2440,9 @@ dependencies = [
 
 [[package]]
 name = "quote"
-version = "1.0.29"
+version = "1.0.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "573015e8ab27661678357f27dc26460738fd2b6c86e46f386fde94cb5d913105"
+checksum = "5fe8a65d69dd0808184ebb5f836ab526bb259db23c657efa38711b1072ee47f0"
 dependencies = [
  "proc-macro2",
 ]
@@ -2483,7 +2627,7 @@ dependencies = [
  "proc-macro2",
  "quote",
  "rust-embed-utils",
- "syn 2.0.25",
+ "syn 2.0.26",
  "walkdir",
 ]
 
@@ -2548,10 +2692,16 @@ dependencies = [
 ]
 
 [[package]]
-name = "ryu"
+name = "rustversion"
 version = "1.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fe232bdf6be8c8de797b22184ee71118d63780ea42ac85b61d1baa6d3b782ae9"
+checksum = "7ffc183a10b4478d04cbbbfc96d0873219d962dd5accaff2ffbd4ceb7df837f4"
+
+[[package]]
+name = "ryu"
+version = "1.0.15"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1ad4cc8da4ef723ed60bced201181d83791ad433213d8c24efffda1eec85d741"
 
 [[package]]
 name = "same-file"
@@ -2573,9 +2723,9 @@ dependencies = [
 
 [[package]]
 name = "scopeguard"
-version = "1.1.0"
+version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d29ab0c6d3fc0ee92fe66e2d99f700eab17a8d57d1c1d3b748380fb20baa78cd"
+checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 
 [[package]]
 name = "security-framework"
@@ -2602,9 +2752,9 @@ dependencies = [
 
 [[package]]
 name = "semver"
-version = "1.0.17"
+version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bebd363326d05ec3e2f532ab7660680f3b02130d780c299bca73469d521bc0ed"
+checksum = "b0293b4b29daaf487284529cc2f5675b8e57c61f70167ba415a463651fd6a918"
 
 [[package]]
 name = "serde"
@@ -2623,14 +2773,14 @@ checksum = "389894603bd18c46fa56231694f8d827779c0951a667087194cf9de94ed24682"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.25",
+ "syn 2.0.26",
 ]
 
 [[package]]
 name = "serde_json"
-version = "1.0.102"
+version = "1.0.103"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b5062a995d481b2308b6064e9af76011f2921c35f97b0468811ed9f6cd91dfed"
+checksum = "d03b412469450d4404fe8499a268edd7f8b79fecb074b0d812ad64ca21f4031b"
 dependencies = [
  "itoa",
  "ryu",
@@ -2682,12 +2832,15 @@ dependencies = [
 
 [[package]]
 name = "sha256"
-version = "1.1.5"
+version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc1367e4d4c740fa0ac1a24431dbbb7d0c2134cc04cad126314227425d27c782"
+checksum = "b11f1548fd635c4b698ffdc817d44dfb725700392b1082bbc241167579bee0c8"
 dependencies = [
+ "async-trait",
+ "bytes",
  "hex",
  "sha2",
+ "tokio",
 ]
 
 [[package]]
@@ -2701,9 +2854,9 @@ dependencies = [
 
 [[package]]
 name = "signal-hook"
-version = "0.3.15"
+version = "0.3.16"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "732768f1176d21d09e076c23a93123d40bba92d50c4058da34d45c8de8e682b9"
+checksum = "b824b6e687aff278cdbf3b36f07aa52d4bd4099699324d5da86a2ebce3aa00b3"
 dependencies = [
  "libc",
  "signal-hook-registry",
@@ -2792,9 +2945,9 @@ dependencies = [
 
 [[package]]
 name = "syn"
-version = "2.0.25"
+version = "2.0.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "15e3fc8c0c74267e2df136e5e5fb656a464158aa57624053375eb9c8c6e25ae2"
+checksum = "45c3457aacde3c65315de5031ec191ce46604304d2446e803d71ade03308d970"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2838,6 +2991,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "term"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c59df8ac95d96ff9bede18eb7300b0fda5e5d8d90960e76f8e14ae765eedbf1f"
+dependencies = [
+ "dirs-next",
+ "rustversion",
+ "winapi",
+]
+
+[[package]]
 name = "termcolor"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2863,7 +3027,7 @@ checksum = "463fe12d7993d3b327787537ce8dd4dfa058de32fc2b195ef3cde03dc4771e8f"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.25",
+ "syn 2.0.26",
 ]
 
 [[package]]
@@ -2947,7 +3111,7 @@ checksum = "630bdcf245f78637c13ec01ffae6187cca34625e8c63150d424b59e55af2675e"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.25",
+ "syn 2.0.26",
 ]
 
 [[package]]
@@ -3006,9 +3170,9 @@ dependencies = [
 
 [[package]]
 name = "toml_edit"
-version = "0.19.13"
+version = "0.19.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5f8751d9c1b03c6500c387e96f81f815a4f8e72d142d2d4a9ffa6fedd51ddee7"
+checksum = "f8123f27e969974a3dfba720fdb560be359f57b44302d280ba72e76a74480e8a"
 dependencies = [
  "indexmap 2.0.0",
  "serde",
@@ -3044,7 +3208,7 @@ checksum = "5f4f31f56159e98206da9efd823404b79b6ef3143b4a7ab76e67b1751b25a4ab"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.25",
+ "syn 2.0.26",
 ]
 
 [[package]]
@@ -3126,9 +3290,9 @@ checksum = "92888ba5573ff080736b3648696b70cafad7d250551175acbaa4e0385b3e1460"
 
 [[package]]
 name = "unicode-ident"
-version = "1.0.10"
+version = "1.0.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "22049a19f4a68748a168c0fc439f9516686aa045927ff767eca0a85101fb6e73"
+checksum = "301abaae475aa91687eb82514b328ab47a211a533026cb25fc3e519b86adfc3c"
 
 [[package]]
 name = "unicode-normalization"
@@ -3169,12 +3333,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "utoipa"
-version = "3.4.0"
+name = "utf8parse"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "520434cac5c98120177d5cc15be032703f6dca7d5ef82e725c798113b375000a"
+checksum = "711b9620af191e0cdc7468a8d14e709c3dcdb115b36f838e601583af800a370a"
+
+[[package]]
+name = "utoipa"
+version = "3.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "68ae74ef183fae36d650f063ae7bde1cacbe1cd7e72b617cbe1e985551878b98"
 dependencies = [
- "indexmap 2.0.0",
+ "indexmap 1.9.3",
  "serde",
  "serde_json",
  "utoipa-gen",
@@ -3182,15 +3352,16 @@ dependencies = [
 
 [[package]]
 name = "utoipa-gen"
-version = "3.4.1"
+version = "3.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6e22e88a487b6e0374533871b79b1f5ded05671bd0936bd547eb42f82fb9060d"
+checksum = "7ea8ac818da7e746a63285594cce8a96f5e00ee31994e655bd827569cb8b137b"
 dependencies = [
+ "lazy_static",
  "proc-macro-error",
  "proc-macro2",
  "quote",
  "regex",
- "syn 2.0.25",
+ "syn 2.0.26",
 ]
 
 [[package]]
@@ -3204,9 +3375,9 @@ dependencies = [
 
 [[package]]
 name = "uuid"
-version = "1.4.0"
+version = "1.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d023da39d1fde5a8a3fe1f3e01ca9632ada0a63e9797de55a879d6e2236277be"
+checksum = "79daa5ed5740825c40b389c5e50312b9c86df53fccd33f281df655642b43869d"
 
 [[package]]
 name = "vcpkg"
@@ -3316,7 +3487,7 @@ dependencies = [
  "once_cell",
  "proc-macro2",
  "quote",
- "syn 2.0.25",
+ "syn 2.0.26",
  "wasm-bindgen-shared",
 ]
 
@@ -3350,7 +3521,7 @@ checksum = "54681b18a46765f095758388f2d0cf16eb8d4169b639ab575a8f5693af210c7b"
 dependencies = [
  "proc-macro2",
  "quote",
- "syn 2.0.25",
+ "syn 2.0.26",
  "wasm-bindgen-backend",
  "wasm-bindgen-shared",
 ]
@@ -3372,11 +3543,27 @@ dependencies = [
 
 [[package]]
 name = "wasm-encoder"
-version = "0.30.0"
+version = "0.31.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b2f8e9778e04cbf44f58acc301372577375a666b966c50b03ef46144f80436a8"
+checksum = "06a3d1b4a575ffb873679402b2aedb3117555eb65c27b1b86c8a91e574bc2a2a"
 dependencies = [
  "leb128",
+]
+
+[[package]]
+name = "wasm-workers-server"
+version = "1.4.0"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
+dependencies = [
+ "actix-web",
+ "anyhow",
+ "clap",
+ "env_logger",
+ "prettytable-rs",
+ "wws-config",
+ "wws-project",
+ "wws-router",
+ "wws-server",
 ]
 
 [[package]]
@@ -3391,9 +3578,9 @@ dependencies = [
 
 [[package]]
 name = "wasmparser"
-version = "0.108.0"
+version = "0.109.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "76c956109dcb41436a39391139d9b6e2d0a5e0b158e1293ef352ec977e5e36c5"
+checksum = "8bf9564f29de2890ee34406af52d2a92dec6ef044c8ddfc5add5db8dcfd36e6c"
 dependencies = [
  "indexmap 2.0.0",
  "semver",
@@ -3401,12 +3588,12 @@ dependencies = [
 
 [[package]]
 name = "wasmprinter"
-version = "0.2.60"
+version = "0.2.61"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b76cb909fe3d9b0de58cee1f4072247e680ff5cc1558ccad2790a9de14a23993"
+checksum = "df06dc468a161167818d5333cc248f49b58218cc0b20eb036840ea4332cb1a4a"
 dependencies = [
  "anyhow",
- "wasmparser 0.108.0",
+ "wasmparser 0.109.0",
 ]
 
 [[package]]
@@ -3724,23 +3911,23 @@ dependencies = [
 
 [[package]]
 name = "wast"
-version = "61.0.0"
+version = "62.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc6b347851b52fd500657d301155c79e8c67595501d179cef87b6f04ebd25ac4"
+checksum = "c7f7ee878019d69436895f019b65f62c33da63595d8e857cbdc87c13ecb29a32"
 dependencies = [
  "leb128",
  "memchr",
  "unicode-width",
- "wasm-encoder 0.30.0",
+ "wasm-encoder 0.31.0",
 ]
 
 [[package]]
 name = "wat"
-version = "1.0.67"
+version = "1.0.68"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "459e764d27c3ab7beba1ebd617cc025c7e76dea6e7c5ce3189989a970aea3491"
+checksum = "295572bf24aa5b685a971a83ad3e8b6e684aaad8a9be24bc7bf59bed84cc1c08"
 dependencies = [
- "wast 61.0.0",
+ "wast 62.0.0",
 ]
 
 [[package]]
@@ -4065,7 +4252,7 @@ dependencies = [
 [[package]]
 name = "wws-api-manage"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
  "actix-web",
  "serde",
@@ -4078,9 +4265,8 @@ dependencies = [
 [[package]]
 name = "wws-config"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
- "anyhow",
  "serde",
  "serde_json",
  "toml 0.7.6",
@@ -4090,9 +4276,8 @@ dependencies = [
 [[package]]
 name = "wws-data-kv"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
- "anyhow",
  "serde",
  "serde_json",
 ]
@@ -4100,7 +4285,7 @@ dependencies = [
 [[package]]
 name = "wws-panel"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
  "actix-web",
  "mime_guess",
@@ -4110,9 +4295,8 @@ dependencies = [
 [[package]]
 name = "wws-project"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
- "anyhow",
  "git2",
  "reqwest",
  "serde",
@@ -4127,7 +4311,7 @@ dependencies = [
 [[package]]
 name = "wws-router"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
  "lazy_static",
  "regex",
@@ -4141,9 +4325,8 @@ dependencies = [
 [[package]]
 name = "wws-runtimes"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
- "anyhow",
  "serde",
  "serde_json",
  "wasmtime-wasi",
@@ -4155,11 +4338,10 @@ dependencies = [
 [[package]]
 name = "wws-server"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
  "actix-files",
  "actix-web",
- "anyhow",
  "wws-api-manage",
  "wws-data-kv",
  "wws-panel",
@@ -4170,19 +4352,17 @@ dependencies = [
 [[package]]
 name = "wws-store"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
- "anyhow",
  "blake3",
 ]
 
 [[package]]
 name = "wws-worker"
 version = "1.4.0"
-source = "git+https://github.com/vmware-labs/wasm-workers-server?tag=v1.4.0#0f5404b445e2ffef282a6f7d4a29693f33b31e6b"
+source = "git+https://github.com/ereslibre/wasm-workers-server?branch=panel-enabled-enum#981f52cda70d23a8d8aaad2e767ca35963bc67c1"
 dependencies = [
  "actix-web",
- "anyhow",
  "base64",
  "reqwest",
  "serde",

@@ -13,9 +13,7 @@ use std::sync::Arc;
 use std::sync::{Condvar, Mutex};
 use std::thread;
 use tokio::runtime::Runtime;
-use wws_config::Config;
-use wws_router::Routes;
-use wws_server::serve;
+use wasm_workers_server::{wws_config::Config, wws_router::Routes, wws_server::{self, serve}};
 
 /// URL to listen to in wws
 const WWS_ADDR: &str = "0.0.0.0";
@@ -138,7 +136,7 @@ impl Instance for Workers {
                     let routes = Routes::new(&path, "", Vec::new(), &config);
 
                     // Final server
-                    let f = serve(&path, routes, WWS_ADDR, WWS_PORT, false, Some(stderr_path)).await.unwrap();
+                    let f = serve(&path, routes, WWS_ADDR, WWS_PORT, wws_server::Panel::Disabled, Some(stderr_path)).await.unwrap();
 
                     info!("[wws] Notify main thread we are about to start");
                     tx.send(Ok(())).unwrap();
