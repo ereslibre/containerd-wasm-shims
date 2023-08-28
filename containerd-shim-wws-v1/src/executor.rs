@@ -8,9 +8,11 @@ use containerd_shim_wasm::sandbox::oci;
 use libc::STDERR_FILENO;
 use libcontainer::workload::{Executor, ExecutorError};
 use oci_spec::runtime::Spec;
-use wws_config::Config;
-use wws_router::Routes;
-use wws_server::serve;
+use wasm_workers_server::{
+    wws_config::Config,
+    wws_router::Routes,
+    wws_server::{serve, Panel, ServeOptions},
+};
 
 /// URL to listen to in wws
 const WWS_ADDR: &str = "0.0.0.0";
@@ -56,9 +58,16 @@ impl Executor for WwsExecutor {
 
         let rt = Runtime::new().unwrap();
         rt.block_on(async {
-            let f = serve(&path, routes, WWS_ADDR, WWS_PORT, false, None)
-                .await
-                .unwrap();
+            let f = serve(ServeOptions {
+                root_path: path,
+                base_routes: routes,
+                hostname: WWS_ADDR.to_string(),
+                port: WWS_PORT,
+                panel: Panel::Disabled,
+                stderr: None, // Some(stderr_path.to_path_buf()),
+            })
+            .await
+            .unwrap();
             info!(" >>> notifying main thread we are about to start");
             tokio::select! {
                 _ = f => {

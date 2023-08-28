@@ -15,9 +15,7 @@ Containerd shim for running Wasm Workers Server workloads.
 [dependencies]
 containerd-shim = "0.4.0"
 containerd-shim-wasm = { git = "https://github.com/containerd/runwasi", rev = "7850da82a86286f6fcf21e1c93390572ed73592d", features = ["cgroupsv2"]}
-wws-config = { git = "https://github.com/vmware-labs/wasm-workers-server", tag = "v1.4.0" }
-wws-server = { git = "https://github.com/vmware-labs/wasm-workers-server", tag = "v1.4.0" }
-wws-router = { git = "https://github.com/vmware-labs/wasm-workers-server", tag = "v1.4.0" }
+wasm-workers-server = { git = "https://github.com/ereslibre/wasm-workers-server", branch = "panel-enabled-enum" }
 log = "0.4"
 tokio = { version = "1", features = [ "full" ] }
 tokio-util = { version = "0.7", features = [ "codec" ]}
