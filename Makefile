@@ -3,6 +3,7 @@ BUILD_TARGETS = $(foreach shim,$(SHIMS),build-$(shim)-cross-$(TARGET))
 
 PREFIX ?= /usr/local
 INSTALL ?= install
+REGISTRY_PREFIX ?= docker.io
 TEST_IMG_NAME_lunatic ?= wasmtest_lunatic:latest
 TEST_IMG_NAME_spin ?= wasmtest_spin:latest
 TEST_IMG_NAME_slight ?= wasmtest_slight:latest
@@ -17,7 +18,7 @@ else
 VERBOSE_FLAG := -vvv
 endif
 
-BIN_DIR ?= 
+BIN_DIR ?=
 
 .PHONY: test
 test: unit-tests integration-tests
@@ -91,15 +92,15 @@ update-deps:
 
 test/out_%/img.tar: images/%/Dockerfile
 	mkdir -p $(@D)
-	docker buildx build --platform=wasi/wasm --load -t $(TEST_IMG_NAME_$*) ./images/$*
+	docker buildx build --platform=wasi/wasm --load -t $(REGISTRY_PREFIX)/$(TEST_IMG_NAME_$*) ./images/$*
 	docker save -o $@ $(TEST_IMG_NAME_$*)
 
 load: $(foreach shim,$(SHIMS),test/out_$(shim)/img.tar)
-	$(foreach shim,$(SHIMS),sudo ctr -n $(CONTAINERD_NAMESPACE) image import test/out_$(shim)/img.tar;)
+	$(foreach shim,$(SHIMS),sudo ctr -n $(CONTAINERD_NAMESPACE) image import --platform=wasi/wasm test/out_$(shim)/img.tar;)
 
 .PHONY: run_%
 run_%: install load
-	sudo ctr run --net-host --rm --runtime=io.containerd.$*.v1 docker.io/library/$(TEST_IMG_NAME_$*) test$*
+	sudo ctr -n $(CONTAINERD_NAMESPACE) run --net-host --rm --runtime=io.containerd.$*.v1 $(REGISTRY_PREFIX)/$(TEST_IMG_NAME_$*) test$*
 
 .PHONY: clean
 clean: $(addprefix clean-,$(SHIMS))

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Description:
 # This script checks for the existence of specific binaries on the system.
